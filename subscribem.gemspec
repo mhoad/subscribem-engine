@@ -11,9 +11,9 @@ Gem::Specification.new do |s|
   s.version     = Subscribem::VERSION
   s.authors     = ['Mark Hoad']
   s.email       = ['markdhoad@gmail.com']
-  s.homepage    = 'TODO'
-  s.summary     = 'TODO: Summary of Subscribem.'
-  s.description = 'TODO: Description of Subscribem.'
+  s.homepage    = 'https://github.com/mhoad/subscribem-engine'
+  s.summary     = 'Rails Engine to provide multitenancy functionality'
+  s.description = 'Based on the book Multitenancy with Rails'
   s.license     = 'MIT'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
