@@ -11,7 +11,7 @@ module Subscribem
     def create
       account = Account.create(account_params)
       flash[:notice] = 'Your account has been successfully created.'
-      redirect_to root_url
+      redirect_to subscribem.root_url
     end
 
     private

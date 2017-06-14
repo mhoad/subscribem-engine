@@ -14,6 +14,7 @@ module Subscribem
 
     describe 'ActiveModel validations' do
       it { expect(account).to validate_presence_of(:name) }
+      it { expect(account).to validate_length_of(:name).is_at_least(2).is_at_most(100) }
     end
   end
 end

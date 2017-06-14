@@ -2,12 +2,14 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   Exclude:
-    - 'spec/db/schema.rb'
-    - 'spec/vendor/**/*'
+    - 'spec/dummy/db/schema.rb'
+    - 'spec/dummy/vendor/**/*'
     - 'spec/fixtures/**/*'
-    - 'spec/tmp/**/*'
-    - 'spec/bin/**/*'
-    - 'spec/db/**/*'
+    - 'spec/dummy/tmp/**/*'
+    - 'spec/dummy/bin/**/*'
+    - 'spec/dummy/db/**/*'
+    - 'bin/**/*'
+    - 'db/**/*'
   TargetRubyVersion: 2.4
 
 Style/Encoding:
