@@ -1,4 +1,11 @@
 <%= form_for(@account) do |account| %>
+  <% if @account.errors.any? %>
+  <ul>
+    <% @account.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
   <p>
     <%= account.label :name %><br>
     <%= account.text_field :name %>

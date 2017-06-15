@@ -10,7 +10,7 @@ module Subscribem
     end
 
     def create
-      @account = Subscribem::Account.create(account_params)
+      @account = Subscribem::Account.new(account_params)
       if @account.save
         sign_in(@account.owner)
         flash[:notice] = 'Your account has been successfully created.'
