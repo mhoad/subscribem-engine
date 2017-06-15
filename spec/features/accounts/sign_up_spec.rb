@@ -4,7 +4,9 @@ require 'rails_helper'
 
 RSpec.feature 'Subscribem::Accounts', type: :feature do
   scenario 'creating an account' do
+    set_default_host
     visit subscribem.root_url
+
     click_link 'Account Sign Up'
     fill_in 'Name', with: 'Test'
     fill_in 'Subdomain', with: 'test'
@@ -15,7 +17,7 @@ RSpec.feature 'Subscribem::Accounts', type: :feature do
 
     expect(page).to have_content('Signed in as test@example.com')
     # expect(page.current_url).to eq(root_url(subdomain: 'test'))
-    expect(page.current_url).to eq('http://test.example.com/subscribem/')
+    expect(page.current_url).to eq('http://test.example.com/')
 
     within('.alert') do
       success_message = 'Your account has been successfully created.'
@@ -37,7 +39,7 @@ RSpec.feature 'Subscribem::Accounts', type: :feature do
     fill_in 'Password confirmation', with: 'password'
     click_button 'Create Account'
 
-    expect(page.current_url).to eq('http://www.example.com/subscribem/accounts')
+    expect(page.current_url).to eq('http://example.com/accounts')
     expect(page).to have_content('Subdomain has already been taken')
 
     within('.alert') do

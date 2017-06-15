@@ -18,5 +18,13 @@ module Subscribem
       it { expect(account).to validate_presence_of(:subdomain) }
       it { expect(account).to validate_uniqueness_of(:subdomain) }
     end
+
+    describe 'Associations' do
+      it { expect(account).to belong_to(:owner) }
+    end
+
+    describe 'Database columns' do
+      it { expect(account).to have_db_index(:subdomain).unique(:true) }
+    end
   end
 end

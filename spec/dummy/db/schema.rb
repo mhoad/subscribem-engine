@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20170615044623) do
     t.datetime "updated_at", null: false
     t.integer "owner_id"
     t.string "subdomain"
-    t.index ["subdomain"], name: "index_subscribem_accounts_on_subdomain"
+    t.index ["subdomain"], name: "index_subscribem_accounts_on_subdomain", unique: true
   end
 
   create_table "subscribem_users", force: :cascade do |t|

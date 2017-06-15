@@ -23,7 +23,7 @@ Devise.setup do |config|
   # config.parent_mailer = 'ActionMailer::Base'
 
   # Inherit from your engine's controller and not the main controller
-  config.parent_controller = 'MyEngine::ApplicationController'
+  config.parent_controller = 'Subscribem::ApplicationController'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -274,7 +274,7 @@ Devise.setup do |config|
   #     mount MyEngine, at: '/my_engine'
   #
   # The router that invoked `devise_for`, in the example above, would be:
-  config.router_name = :subscibem
+  config.router_name = :subscribem
   #
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
