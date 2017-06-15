@@ -5,19 +5,30 @@ require_dependency 'subscribem/application_controller'
 module Subscribem
   class AccountsController < ApplicationController
     def new
-      @account = Account.new
+      @account = Subscribem::Account.new
+      @account.build_owner
     end
 
     def create
-      account = Account.create(account_params)
-      flash[:notice] = 'Your account has been successfully created.'
-      redirect_to subscribem.root_url
+      @account = Subscribem::Account.create(account_params)
+      if @account.save
+        sign_in(@account.owner)
+        flash[:notice] = 'Your account has been successfully created.'
+        redirect_to subscribem.root_url
+      else
+        flash.now[:alert] = 'Sorry, your account could not be created.'
+        render :new
+      end
     end
 
     private
 
     def account_params
-      params.require(:account).permit(:name)
+      # params.require(:account).permit(:name)
+      params.require(:account).permit(:name,
+                                      owner_attributes: %i[
+                                        email password password_confirmation
+                                      ])
     end
   end
 end

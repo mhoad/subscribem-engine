@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'devise'
+
 module Subscribem
   class Engine < ::Rails::Engine
     isolate_namespace Subscribem
