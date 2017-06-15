@@ -14,7 +14,7 @@ module Subscribem
       if @account.save
         sign_in(@account.owner)
         flash[:notice] = 'Your account has been successfully created.'
-        redirect_to subscribem.root_url
+        redirect_to subscribem.root_url(subdomain: @account.subdomain)
       else
         flash.now[:alert] = 'Sorry, your account could not be created.'
         render :new
@@ -24,8 +24,7 @@ module Subscribem
     private
 
     def account_params
-      # params.require(:account).permit(:name)
-      params.require(:account).permit(:name,
+      params.require(:account).permit(:name, :subdomain,
                                       owner_attributes: %i[
                                         email password password_confirmation
                                       ])

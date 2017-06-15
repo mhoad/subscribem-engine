@@ -3,6 +3,7 @@
 module Subscribem
   class Account < ApplicationRecord
     validates :name, presence: true, length: { minimum: 2, maximum: 100 }
+    validates :subdomain, presence: true, uniqueness: true
 
     belongs_to :owner, class_name: 'Subscribem::User'
     accepts_nested_attributes_for :owner
