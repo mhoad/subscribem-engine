@@ -14,6 +14,7 @@ module Subscribem
       def create
         @invitation = current_account.invitations.new(invitation_params)
         @invitation.save
+        Subscribem::InvitationMailer.invite(@invitation).deliver_now
         flash[:notice] = "#{@invitation.email} has been invited."
         redirect_to subscribem.root_url
       end

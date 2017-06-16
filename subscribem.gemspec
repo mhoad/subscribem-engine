@@ -26,4 +26,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails', '~> 3.5'
   s.add_development_dependency 'factory_girl_rails', '~> 4.0'
   s.add_development_dependency 'faker'
+  s.add_development_dependency 'email_spec', '~> 2.1'
 end
