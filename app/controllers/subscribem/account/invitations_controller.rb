@@ -21,24 +21,17 @@ module Subscribem
       end
 
       def accept
-        # @invitation = Subscribem::Invitation.find(params[:id])
-        # byebug
+        store_location_for(:user, request.fullpath)
         @invitation = Subscribem::Invitation.find_by!(token: params[:id])
       end
 
       def accepted
-        # @invitation = Subscribem::Invitation.find(params[:id])
         @invitation = Subscribem::Invitation.find_by!(token: params[:id])
-        user_params = params[:user].permit(
-          :email,
-          :password,
-          :password_confirmaiton
-        )
-
-        user = Subscribem::User.create!(user_params)
-        current_account.users << user
-        sign_in(user)
-
+        # They might already be a user for another account so only create
+        # them as a user if we need to. Once they are signed in add them
+        # to this account and redirect them appropriately.
+        signup_new_user unless user_signed_in?
+        current_account.users << current_user
         flash[:notice] = "You have joined the #{current_account.name} account."
         redirect_to subscribem.root_url(subdomain: current_account.subdomain)
       end
@@ -54,6 +47,17 @@ module Subscribem
           flash[:alert] = 'Only an owner of an account can do that.'
           redirect_to subscribem.root_url(subdomain: current_account.subdomain)
         end
+      end
+
+      def signup_new_user
+        user_params = params[:user].permit(
+          :email,
+          :password,
+          :password_confirmaiton
+        )
+
+        user = Subscribem::User.create!(user_params)
+        sign_in(user)
       end
     end
   end
