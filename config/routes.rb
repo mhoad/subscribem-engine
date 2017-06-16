@@ -8,7 +8,12 @@ Subscribem::Engine.routes.draw do
   constraints(Subscribem::Constraints::SubdomainRequired) do
     scope module: 'account' do
       root to: 'dashboard#index', as: :account_root
-      resources :invitations, only: %i[new create]
+      resources :invitations, only: %i[new create] do
+        member do
+          get :accept
+          patch :accepted
+        end
+      end
     end
   end
   root to: 'dashboard#index'

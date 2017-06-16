@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :invitation, class: Subscribem::Invitation do
-    email 'user@example.com'
+    email { Faker::Internet.email }
     account
   end
 end

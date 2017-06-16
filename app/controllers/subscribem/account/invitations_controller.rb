@@ -5,7 +5,8 @@ require_dependency 'subscribem/application_controller'
 module Subscribem
   class Account
     class InvitationsController < Subscribem::Account::BaseController
-      before_action :authorize_owner!
+      skip_before_action :authenticate_user!, only: %i[accept accepted]
+      before_action :authorize_owner!, except: %i[accept accepted]
 
       def new
         @invitation = Subscribem::Invitation.new
@@ -17,6 +18,26 @@ module Subscribem
         Subscribem::InvitationMailer.invite(@invitation).deliver_now
         flash[:notice] = "#{@invitation.email} has been invited."
         redirect_to subscribem.root_url
+      end
+
+      def accept
+        @invitation = Subscribem::Invitation.find(params[:id])
+      end
+
+      def accepted
+        @invitation = Subscribem::Invitation.find(params[:id])
+        user_params = params[:user].permit(
+          :email,
+          :password,
+          :password_confirmaiton
+        )
+
+        user = Subscribem::User.create!(user_params)
+        current_account.users << user
+        sign_in(user)
+
+        flash[:notice] = "You have joined the #{current_account.name} account."
+        redirect_to subscribem.root_url(subdomain: current_account.subdomain)
       end
 
       private

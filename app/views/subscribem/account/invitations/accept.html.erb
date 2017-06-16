@@ -1,0 +1,27 @@
+<h2>Accept Invitation</h2>
+
+You are accepting an invitation to join the <%= @invitation.account.name %> account.
+
+<%= form_for([:accepted, @invitation], as: :user) do |f| %>
+  <% if @invitation.errors.any? %>
+  <ul>
+    <% @invitation.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <p>
+    <%= f.label :email %><br>
+    <%= f.email_field :email, value: @invitation.email %>
+  </p>
+  <p>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <%= f.submit "Accept Invitation" %>
+
+<% end %>
