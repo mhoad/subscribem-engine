@@ -1,5 +1,17 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: subscribem_invitations
+#
+#  id         :integer          not null, primary key
+#  email      :string
+#  account_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  token      :string
+#
+
 module Subscribem
   class Invitation < ApplicationRecord
     belongs_to :account, class_name: 'Subscribem::Account'
