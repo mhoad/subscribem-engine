@@ -21,6 +21,7 @@ module Subscribem
 
     describe 'Associations' do
       it { expect(account).to belong_to(:owner) }
+      it { expect(account).to have_many(:invitations) }
     end
 
     describe 'Database columns' do

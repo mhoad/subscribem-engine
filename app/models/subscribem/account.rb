@@ -6,6 +6,8 @@ module Subscribem
     validates :subdomain, presence: true, uniqueness: true
 
     belongs_to :owner, class_name: 'Subscribem::User'
+    has_many :invitations, class_name: 'Subscribem::Invitation'
+
     accepts_nested_attributes_for :owner
   end
 end

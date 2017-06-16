@@ -19,7 +19,6 @@ module Subscribem
         current_account.owner == current_user
       end
       helper_method :owner?
-
     end
   end
 end

@@ -1,0 +1,15 @@
+<h2>New Invitation</h2>
+<%= form_for(@invitation) do |invitation| %>
+  <% if @invitation.errors.any? %>
+  <ul>
+    <% @invitation.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <p>
+    <%= invitation.label :email %><br>
+    <%= invitation.email_field :email %>
+  </p>
+  <%= invitation.submit "Invite User" %>
+<% end %>
