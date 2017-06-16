@@ -5,7 +5,7 @@ require_dependency 'subscribem/application_controller'
 module Subscribem
   class Account
     class InvitationsController < Subscribem::Account::BaseController
-      skip_before_action :authenticate_user!, only: %i[accept accepted]
+      skip_before_action :authorize_user!, only: %i[accept accepted]
       before_action :authorize_owner!, except: %i[accept accepted]
 
       def new
