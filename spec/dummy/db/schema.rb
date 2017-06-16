@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616050508) do
+ActiveRecord::Schema.define(version: 20170616161311) do
 
   create_table "subscribem_accounts", force: :cascade do |t|
     t.string "name"
@@ -26,7 +26,9 @@ ActiveRecord::Schema.define(version: 20170616050508) do
     t.integer "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "token"
     t.index ["account_id"], name: "index_subscribem_invitations_on_account_id"
+    t.index ["token"], name: "index_subscribem_invitations_on_token", unique: true
   end
 
   create_table "subscribem_memberships", force: :cascade do |t|

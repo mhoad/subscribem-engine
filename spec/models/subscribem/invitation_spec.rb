@@ -31,5 +31,12 @@ module Subscribem
     describe 'Associations' do
       it { expect(invitation).to belong_to(:account) }
     end
+
+    describe 'Functionality' do
+      it 'generates a unique token' do
+        invitation.save # We have only built it so far
+        expect(invitation.token).to be_present
+      end
+    end
   end
 end

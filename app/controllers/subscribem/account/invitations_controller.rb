@@ -21,11 +21,14 @@ module Subscribem
       end
 
       def accept
-        @invitation = Subscribem::Invitation.find(params[:id])
+        # @invitation = Subscribem::Invitation.find(params[:id])
+        # byebug
+        @invitation = Subscribem::Invitation.find_by!(token: params[:id])
       end
 
       def accepted
-        @invitation = Subscribem::Invitation.find(params[:id])
+        # @invitation = Subscribem::Invitation.find(params[:id])
+        @invitation = Subscribem::Invitation.find_by!(token: params[:id])
         user_params = params[:user].permit(
           :email,
           :password,
@@ -43,7 +46,7 @@ module Subscribem
       private
 
       def invitation_params
-        params.require(:invitation).permit(:email, :account)
+        params.require(:invitation).permit(:email)
       end
 
       def authorize_owner!
