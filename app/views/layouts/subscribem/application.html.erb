@@ -16,6 +16,14 @@
 <% else %>
   <%= link_to "Sign in", subscribem.new_user_session_path %>
 <% end %>
+<%= link_to subscribem.root_url(subdomain: nil) do %>
+  <strong><%= Subscribem::Engine::APPLICATION_NAME %></strong>
+<% end %>
+<% if current_account %>
+  <%= link_to subscribem.root_url(subdomain: current_account.subdomain) do %>
+    <strong><%= current_account.name %></strong>
+  <% end %>
+<% end %>
 <%= yield %>
 
 </body>

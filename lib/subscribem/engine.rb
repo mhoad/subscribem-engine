@@ -9,5 +9,7 @@ module Subscribem
     config.generators do |g|
       g.test_framework :rspec, view_specs: false
     end
+
+    APPLICATION_NAME = 'My SaaS'
   end
 end
