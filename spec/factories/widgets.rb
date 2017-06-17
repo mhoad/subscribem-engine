@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :widget do
     name 'MyString'
-    account nil
+    account
   end
 end

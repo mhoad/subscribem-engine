@@ -6,6 +6,7 @@
 # just scoped by a database field so we can do things like current_account.widgets
 class WidgetsController < ApplicationController
   before_action :find_widget, only: %i[edit update show destroy]
+  before_action :authorize_user!
 
   def index
     @widgets = current_account.widgets
