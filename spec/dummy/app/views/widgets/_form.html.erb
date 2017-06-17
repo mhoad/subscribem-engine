@@ -1,0 +1,14 @@
+<%= form_for(@widget) do |widget| %>
+  <% if @widget.errors.any? %>
+  <ul>
+    <% @widget.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <p>
+    <%= widget.label :name %><br>
+    <%= widget.text_field :name %>
+  </p>
+  <%= widget.submit %>
+<% end %>

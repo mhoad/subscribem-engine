@@ -2,4 +2,5 @@
 
 Rails.application.routes.draw do
   mount Subscribem::Engine => '/'
+  resources :widgets
 end
