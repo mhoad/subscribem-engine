@@ -14,6 +14,7 @@ Subscribem::Engine.routes.draw do
           patch :accepted
         end
       end
+      resources :users, only: %i[index destroy]
     end
   end
   root to: 'dashboard#index'
